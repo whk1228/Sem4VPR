@@ -1,0 +1,1 @@
+python predict.py --input mlwu_utils/test_imgs  --dataset cityscapes --model deeplabv3plus_resnet101 --ckpt mlwu_utils/pretrained_weight/best_deeplabv3plus_resnet101_cityscapes_os16.pth --save_val_results_to mlwu_utils/test_results
