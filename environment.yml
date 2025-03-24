@@ -1,4 +1,4 @@
-name: salad
+name: sem4vpr
 channels:
   - defaults
   - xformers
