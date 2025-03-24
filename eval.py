@@ -8,14 +8,12 @@ import time
 from vpr_model import VPRModel
 from utils.validation import get_validation_recalls
 # Dataloader
-from dataloaders.val.NordlandDataset import NordlandDataset
 from dataloaders.val.MapillaryDataset import MSLS
 from dataloaders.val.MapillaryTestDataset import MSLSTest
 from dataloaders.val.PittsburghDataset import PittsburghDataset
-from dataloaders.val.SPEDDataset import SPEDDataset
 from dataloaders.val.TokyoDataset import TokyoDataset
 print('import done')
-# VAL_DATASETS = ['MSLS','pitts30k_test', 'pitts250k_test', 'Nordland', 'SPED','Tokyo']
+# VAL_DATASETS = ['MSLS','pitts30k_test', 'pitts250k_test','Tokyo']
 VAL_DATASETS = ['MSLS']
 def input_transform(image_size=None):
     MEAN=[0.485, 0.456, 0.406]; STD=[0.229, 0.224, 0.225]
@@ -35,20 +33,13 @@ def get_val_dataset(dataset_name, image_size=None):
     dataset_name = dataset_name.lower()
     transform = input_transform(image_size=image_size)
 
-    if 'nordland' in dataset_name:
-        ds = NordlandDataset(input_transform=transform)
-
-    elif 'msls_test' in dataset_name:
+    if 'msls_test' in dataset_name:
         ds = MSLSTest(input_transform=transform)
-
     elif 'msls' in dataset_name:
         ds = MSLS(input_transform=transform)
 
     elif 'pitts' in dataset_name:
         ds = PittsburghDataset(which_ds=dataset_name, input_transform=transform)
-
-    elif 'sped' in dataset_name:
-        ds = SPEDDataset(input_transform=transform)
     elif 'tokyo' in dataset_name:
         ds = TokyoDataset(input_transform=transform)
     else:
